@@ -1,0 +1,48 @@
+site_name: Payment emulation
+
+theme:
+    name: material
+    language: pt-BR
+
+    palette:
+      - scheme: default
+        primary: indigo
+        toggle:
+          icon: material/weather-night
+          name: Modo noturno
+
+      - scheme: slate
+        primary: deep indigo
+        toggle:
+          icon: material/weather-sunny
+          name: Modo claro
+
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - markdown_include.include:
+        base_path: docs/assets/partials
+    - admonition
+
+plugins:
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: pt
+          default: true
+          name: Português
+          build: true
+        - locale: en
+          name: English
+          build: true
+
+  - search
+
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            heading_level: 2
