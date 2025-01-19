@@ -17,4 +17,4 @@ jobs:
         run: poetry install --without docs
 
       - name: Run tests
-        run: cd ./payment_emulation && poetry run pytest --cov-report xml
+        run: cd ./payment_emulation && poetry run pytest --cov-report=xml

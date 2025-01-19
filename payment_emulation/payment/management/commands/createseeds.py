@@ -122,6 +122,6 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(
                     f'{", ".join(map(lambda x: f'`{x}`', created_seeds))} '
-                    'seeds were successfully created.'
+                    f'seeds were successfully created.'
                     )
             )
