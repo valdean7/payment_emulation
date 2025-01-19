@@ -212,6 +212,8 @@ class PaymentSDK():
         Returns:
             A `dict` with the instance values.
         """
+        month = instance.validity.month
+        year = str(instance.validity.year)[2:]
         return {
                 'account': {
                     'cpf': instance.account.cpf,
@@ -223,8 +225,7 @@ class PaymentSDK():
                 'card': {
                     'card_holder_name': instance.card_holder_name,
                     'card_number': instance.card_number,
-                    'validity': f'{instance.validity.month}/{
-                        str(instance.validity.year)[2:]}',
+                    'validity': f'{month}/{year}',
                     'cvv': instance.cvv,
                     'card_flag': instance.card_flag,
                 }
