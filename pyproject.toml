@@ -59,7 +59,7 @@ filterwarnings = [
 addopts = [
     "-vv",
     "-s",
-    "--cov=payment_emualtion.payment,payment_emualtion.utils"
+    "--cov-report=term"
 ]
 
 [tool.coverage.run]
