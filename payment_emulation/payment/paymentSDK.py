@@ -123,7 +123,7 @@ class PaymentSDK():
         if len(missing_keys) > 0:
             raise KeyError(
                 f'The required {"key" if len(missing_keys) == 1 else "keys"}' 
-                f' {", ".join(map(lambda x: f'`{x}`', missing_keys))} is'
+                f' {", ".join(map(lambda x: f"`{x}`", missing_keys))} is'
                 f' missing in the dict passed in the `items` parameter.'
             )
 

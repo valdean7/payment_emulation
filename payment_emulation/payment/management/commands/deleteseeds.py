@@ -57,7 +57,7 @@ class Command(BaseCommand):
             if deleted_seeds:
                 self.stdout.write(
                     self.style.SUCCESS(
-                        f'{", ".join(map(lambda x: f'`{x}`', deleted_seeds))} '
+                        f'{", ".join(map(lambda x: f"`{x}`", deleted_seeds))} '
                         f'seeds were successfully deleted.'
                     )
                 )
