@@ -6,8 +6,8 @@ authors = [
     {name = "Valdean",email = "valdeanjose6@gmail.com"}
 ]
 readme = "README.md"
-license = { file = "LICENSE" }
-requires-python = ">=3.13"
+license = { file = "payment_emulation/LICENSE" }
+requires-python = ">=3.10"
 dependencies = [
     "django (>=5.1.5,<6.0.0)",
     "pycpfcnpj (>=1.8) ; python_version >= '3.8' and python_version < '4.0'",
