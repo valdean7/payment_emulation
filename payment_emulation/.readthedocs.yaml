@@ -13,4 +13,3 @@ build:
       - poetry config virtualenvs.create false
     post_install:
       - poetry install --no-interaction --no-ansi --only docs
-      - cd ./payment_emulation
