@@ -10,4 +10,6 @@ build:
   jobs:
     pre_install:
       - pip install poetry
+      - poetry config virtualenvs.create false
       - poetry install --no-interaction --no-ansi --only docs
+      - cd ./payment_emulation
