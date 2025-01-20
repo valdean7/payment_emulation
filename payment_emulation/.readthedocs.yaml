@@ -14,5 +14,6 @@ build:
       - "pip install mkdocs mkdocs-macros-plugin mkdocs-material "
       - "pip install mkdocs-static-i18n mkdocstrings mkdocstrings-python"
       - "pip install pymdown-extensions"
-    # post_install:
+    post_install:
     #   - poetry install --no-interaction --no-ansi --only docs
+      - cd ./payment_emulation
