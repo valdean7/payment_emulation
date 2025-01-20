@@ -1,4 +1,5 @@
 site_name: Payment emulation
+repo_url: https://github.com/valdean7/payment_emulation
 
 theme:
     name: material
@@ -21,11 +22,11 @@ markdown_extensions:
     - pymdownx.highlight
     - pymdownx.superfences
     - pymdownx.inlinehilite
-    - markdown_include.include:
-        base_path: docs/assets/partials
     - admonition
 
 plugins:
+  - macros
+
   - i18n:
       docs_structure: folder
       languages:
@@ -46,3 +47,8 @@ plugins:
             docstring_style: google
             show_source: true
             heading_level: 2
+
+extra:
+  vars:
+    lib_name: "payment-emulation"
+    lib_name_sc: "payment_emulation"

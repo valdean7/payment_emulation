@@ -1,5 +1,5 @@
 ```{.py3 hl_lines="9-19"}
-from payment_emulation.payment import PaymentSDK
+from {{ vars.lib_name_sc }}.payment import PaymentSDK
 
 items = [
     {'id': 1, 'title': 'T-shirt', 'quantity': 3, 'unit_price': 49.99},

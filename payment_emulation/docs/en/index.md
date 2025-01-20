@@ -1,7 +1,7 @@
 # Home
 
 ## Description
-`payment_emulation` is a library developed to be used in Django projects to 
+`{{ vars.lib_name_sc }}` is a library developed to be used in Django projects to 
 emulate bank card payments. It is ideal for use in your projects to implement a 
 payment method.
 
@@ -14,12 +14,12 @@ Payment emulation requires the following:
 
 ## Installation
 
-{!installation_en.md!}
+{% include "assets/partials/installation_en.md" %}
 
 ## Examples
 
 Let's take a look at a quick example of how to use the payment emulation library.
 
-{!exemple_home.md!}
+{% include "assets/partials/exemple_home.md" %}
 
-{!license.md!}
+{% include "assets/partials/license.md" %}

@@ -1,5 +1,5 @@
 ```{.py3}
-from payment_emulation.payment import PaymentSDK
+from {{ vars.lib_name_sc }}.payment import PaymentSDK
 
 response = PaymentSDK.get_seeds()
 print(response['PROBATUS'])

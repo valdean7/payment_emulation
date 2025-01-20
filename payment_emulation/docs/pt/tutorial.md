@@ -2,7 +2,7 @@
 
 ## Instalando a biblioteca em seu projeto
 
-{!installation_pt.md!}
+{% include "assets/partials/installation_pt.md" %}
 
 ## Seeds pré-preparadas
 
@@ -17,7 +17,7 @@ transação, estas chaves são:
 
 Veja um exemplo de como obter esses dados.
 
-{!seeds.md!}
+{% include "assets/partials/seeds.md" %}
 
 ## Manipulando seeds utilizando o CLI
 
@@ -117,7 +117,7 @@ for um `transaction: success`, o valor obtido da `quantity` vezes o
 
 Veja um exemplo de como realizar uma transação.  
 
-{!exemple_tutorial.md!}
+{% include "assets/partials/exemple_tutorial.md" %}
 
 ## Como criar uma nova conta e cartão
 Durante a criação de uma conta e de um cartão, não será necessário passar todos os
@@ -148,4 +148,4 @@ Já os do modelo `Card` serão `account`, `card_holder_name`, `card_flag`, e o `
     - `active`: recebe um valor `bool`, `True` como valor `default`.
     - `pin`: recebe uma `str` (apenas dígitos).
 
-{!account_card_create.md!}
+{% include "assets/partials/account_card_create.md" %}

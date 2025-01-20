@@ -2,9 +2,7 @@
 
 ## Installing the library in your project
 
-### 1. Install the library `payment_emulation`:
-
-{!installation_en.md!}
+{% include "assets/partials/installation_en.md" %}
 
 ## Pre-prepared seeds
 
@@ -18,14 +16,14 @@ Each data represented by a key will perform a specific type of transaction, and 
 
 See an example of how to get this data.
 
-{!seeds.md!}
+{% include "assets/partials/seeds.md" %}
 
-## Managing Seeds Using the CLI
+## Managing seeds using the CLI
 
 A simple way to handle seeds is by using the command-line interface (CLI).  
 Below are the methods for performing these operations.
 
-### Deleting Seeds
+### Deleting seeds
 
 If you want to delete existing seeds, use the following command:
 
@@ -51,7 +49,7 @@ If the specified seed name is not found, the following response will appear:
     When deleting a specific seed, the name can be provided in uppercase or lowercase.
     As long as the name is correct, it will work.
 
-### Creating Seeds
+### Creating seeds
 
 To create seeds, use the following command:
 
@@ -64,7 +62,7 @@ python manage.py createseeds
 !!! Info
     When creating seeds, if some already exist, only the missing seeds will be created.
 
-### Setting Balance
+### Setting balance
 
 The only seed that can have a new balance set is the `PROBATUS` seed.
 When a transaction is made using it, the `amount` is deducted from the `balance`,
@@ -109,7 +107,7 @@ the `balance` of the account (model `Account`) linked to the card.
 
 See an example of how to perform a transaction.
 
-{!exemple_tutorial.md!}
+{% include "assets/partials/exemple_tutorial.md" %}
 
 ## How to create a new account and card
 
@@ -135,7 +133,7 @@ parameters will be `account`, `card_holder_name`, `card_flag`, and `pin`.
     - `active`: receives a `bool`, `True` as the `default` value.
     - `pin`: receives a `str` (only digits).
 
-{!account_card_create.md!}
+{% include "assets/partials/account_card_create.md" %}
 
 ## Transaction results
 - `success`: if all credentials are correct and the total purchase amount is less than the `balance`.

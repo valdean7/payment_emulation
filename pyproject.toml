@@ -12,7 +12,10 @@ dependencies = [
     "django (>=5.1.5,<6.0.0)",
     "pycpfcnpj (>=1.8) ; python_version >= '3.8' and python_version < '4.0'",
 ]
-keywords = ["payment", "emulation", "SDK", "implementation", "e-commerce"]
+keywords = [
+    "payment", "emulation", "SDK", "implementation", "e-commerce",
+    "pagamento", "emulação", "implementação"
+]
 classifiers = [
     "Framework :: Django",
     "Programming Language :: Python :: 3",
@@ -21,9 +24,9 @@ classifiers = [
 
 [project.urls]
 homepage = "https://python-poetry.org/"
-repository = "https://github.com/python-poetry/poetry"
+repository = "https://github.com/valdean7/payment_emulation"
 documentation = "https://python-poetry.org/docs/"
-"Bug Tracker" = "https://github.com/python-poetry/poetry/issues"
+"Bug Tracker" = "https://github.com/valdean7/payment_emulation/issues"
 
 
 [build-system]
@@ -42,7 +45,7 @@ mkdocs = "^1.6.1"
 mkdocs-material = "^9.5.49"
 mkdocs-static-i18n = "^1.2.3"
 mkdocstrings-python = "^1.13.0"
-markdown-include = "^0.8.1"
+mkdocs-macros-plugin = "^1.3.7"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "payment_emulation.core.settings"

@@ -1,6 +1,6 @@
 
 ```{.py3 hl_lines="26-36"}
-from payment_emulation.payment import PaymentSDK
+from {{ vars.lib_name_sc }}.payment import PaymentSDK
 
 
 items = [
@@ -65,5 +65,4 @@ expected output:
         "amount": 309.99, 
         "created_at": "2025-01-12T15:07:10.312132-03:00"
     }
-
 ```

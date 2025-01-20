@@ -110,4 +110,3 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(insert_seeds),
     ]
-

@@ -1,7 +1,7 @@
-### 1. Install the library `payment_emulation`:
+### 1. Install the library `{{ vars.lib_name }}`:
 
 ```{.bash}
-pip install payment_emulation
+pip install {{ vars.lib_name }}
 ```
 
 ### 2. Add to `INSTALLED_APPS`: 
@@ -9,11 +9,11 @@ pip install payment_emulation
 ```{.py3}
 INSTALLED_APPS = [
     ...
-    'payment_emulation',
+    '{{ vars.lib_name_sc }}',
 ]
 ```
 
-### 3. Perform Migrations:
+### 3. Perform migrations:
 
 ```{.bash}
 python manage.py migrate

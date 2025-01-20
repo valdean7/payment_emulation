@@ -1,7 +1,7 @@
-### 1. Instalar a biblioteca `payment_emulation`:
+### 1. Instalar a biblioteca `{{ vars.lib_name }}`:
 
 ```{.bash}
-pip install payment_emulation
+pip install {{ vars.lib_name }}
 ```
 
 ### 2. Adicione em `INSTALLED_APPS`: 
@@ -9,11 +9,11 @@ pip install payment_emulation
 ```{.py3}
 INSTALLED_APPS = [
     ...
-    'payment_emulation',
+    '{{ vars.lib_name_sc }}',
 ]
 ```
 
-### 3. Realize as Migrações:
+### 3. Realize as migrações:
 
 ```{.bash}
 python manage.py migrate
