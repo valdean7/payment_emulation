@@ -8,9 +8,10 @@ build:
   tools:
     python: "3.10" 
   jobs:
-    pre_install:
-      - export PATH="$READTHEDOCS_VIRTUALENV_PATH/bin:$PATH"
+    post_create_environment:
+      - pip install --upgrade pip
       - pip install poetry
       - poetry config virtualenvs.create false
+    post_install:
       - poetry install --no-interaction --no-ansi --only docs
       - cd ./payment_emulation
