@@ -3,7 +3,6 @@ repo_url: https://github.com/valdean7/payment_emulation
 
 theme:
     name: material
-    language: pt-BR
 
     palette:
       - scheme: default
