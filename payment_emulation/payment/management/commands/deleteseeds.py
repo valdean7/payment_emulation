@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from payment.models import Account # type: ignore
+from payment_emulation.payment.models import Account
 
 
 SEEDS_NAME = ['PROBATUS', 'REPROBI', 'PENDENTE']

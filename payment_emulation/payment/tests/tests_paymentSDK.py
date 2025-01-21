@@ -1,7 +1,7 @@
 from django.test import TestCase
-from payment.paymentSDK import PaymentSDK # type: ignore
+from payment_emulation.payment.paymentSDK import PaymentSDK
 from unittest.mock import patch, Mock as M
-from payment.models import Card # type: ignore
+from payment_emulation.payment.models import Card
 from decimal import Decimal
 import json
 
@@ -32,7 +32,7 @@ class TestPaymentSDK(TestCase):
                     self.assertRaises(KeyError, PaymentSDK, self.item)
 
 
-    @patch('payment.paymentSDK.PaymentSDK._set_response')
+    @patch('payment_emulation.payment.paymentSDK.PaymentSDK._set_response')
     def test_should_check_if_the_response_has_been_seted(self,mock: M):
         PaymentSDK(self.item)
         self.assertEqual(mock.call_count, 1)
@@ -175,7 +175,7 @@ class TestPaymentSDK(TestCase):
         self.assertEqual(response_object['transaction'], 'failure')
 
 
-    @patch('payment.paymentSDK.PaymentSDK.set_seeds')
+    @patch('payment_emulation.payment.paymentSDK.PaymentSDK.set_seeds')
     def test_should_call_set_seeds_once(self, mock: M):
         PaymentSDK.get_seeds()
         self.assertEqual(mock.call_count, 3)

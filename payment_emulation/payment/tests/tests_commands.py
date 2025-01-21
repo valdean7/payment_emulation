@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.management import call_command
 from io import StringIO
-from payment.models import Account # type: ignore
+from payment_emulation.payment.models import Account
 import re
 from decimal import Decimal
 

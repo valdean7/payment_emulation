@@ -1,7 +1,7 @@
 from django.core.management import BaseCommand
-from payment.models import Account, Card # type: ignore
+from payment_emulation.payment.models import Account, Card
 from pycpfcnpj.gen import cpf
-from utils import generators # type: ignore
+from payment_emulation.utils import generators
 from django.contrib.auth import hashers
 from django.utils.timezone import now
 from datetime import timedelta
