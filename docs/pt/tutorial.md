@@ -32,7 +32,7 @@ Caso queira apagar as seeds existentes use o seguinte comando:
 python manage.py deleteseeds
 ```
 
-![deleteseeds](../assets/img/deleteseeds.png)
+![deleteseeds](assets/img/deleteseeds.png)
 
 Também é possível apagar seeds específicas utilizando a flag `-n` ou `--name`:
 
@@ -40,11 +40,11 @@ Também é possível apagar seeds específicas utilizando a flag `-n` ou `--name
 python manage.py deleteseeds --name probatus
 ```
 
-![deleteseeds name](../assets/img/deleteseeds_name.png)
+![deleteseeds name](assets/img/deleteseeds_name.png)
 
 Caso o nome informado da seed não for encontrado ocasionará a seguinte resposta:
 
-![deleteseeds not found](../assets/img/deleteseeds_not_found.png)
+![deleteseeds not found](assets/img/deleteseeds_not_found.png)
 
 !!! Info
     Quando for apagar uma seeds especifica, o nome que for passado pode ser com letras maiusculas ou minusculas,
@@ -58,7 +58,7 @@ Para criar as seeds use o seguinte comando:
 python manage.py createseeds
 ```
 
-![createseeds](../assets/img/createseeds.png)
+![createseeds](assets/img/createseeds.png)
 
 !!! Info
     Ao criar as seeds, se já existir alguma criada, só será criada as seeds que estão faltando.
@@ -74,7 +74,7 @@ use o seguinte comando:
 python manage.py setbalance
 ```
 
-![setbalance default](../assets/img/setbalance_default.png)
+![setbalance default](assets/img/setbalance_default.png)
 
 Também é possível definir um valor desejado usando a flag `-b` ou `--balance`:
 
@@ -82,11 +82,11 @@ Também é possível definir um valor desejado usando a flag `-b` ou `--balance`
 python manage.py setbalance --balance 10000
 ```
 
-![setbalance value](../assets/img/setbalance_value.png)
+![setbalance value](assets/img/setbalance_value.png)
 
 Caso a seed `PROBATUS` não exista ocasionará a seguinte resposta:
 
-![setbalance not created](../assets/img/setbalance_not_created.png)
+![setbalance not created](assets/img/setbalance_not_created.png)
 
 ## Resultado das transações
 - `success`: se todas as credenciais estiverem corretas e o valor total da compra

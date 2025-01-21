@@ -1,1 +1,1 @@
-::: translate.paymentSDK.PaymentSDK
+::: docs.translate.paymentSDK.PaymentSDK

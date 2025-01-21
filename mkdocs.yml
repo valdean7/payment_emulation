@@ -3,6 +3,7 @@ repo_url: https://github.com/valdean7/payment_emulation
 
 theme:
     name: material
+    language: pt-BR
 
     palette:
       - scheme: default
@@ -17,6 +18,14 @@ theme:
           icon: material/weather-sunny
           name: Modo claro
 
+# nav:
+#   - Inicio: index.md
+#   - Tutorial: tutorial.md
+#   - Payment:
+#     - payment/PaymentSDK.md
+#   - Utils:
+#     - utils/generators.md
+
 markdown_extensions:
     - pymdownx.highlight
     - pymdownx.superfences
@@ -26,6 +35,7 @@ markdown_extensions:
 plugins:
   - macros
 
+
   - i18n:
       docs_structure: folder
       languages:
@@ -33,9 +43,27 @@ plugins:
           default: true
           name: Português
           build: true
+        #   nav_translations:
+        #     Home: Inicio
+          nav:
+            - Inicio: pt/index.md
+            - Tutorial: pt/tutorial.md
+            - PaymentSDK: pt/payment/PaymentSDK.md
+            - Utils: pt/utils/generators.md
+
+
+
+
         - locale: en
           name: English
           build: true
+          theme:
+            language: en
+          nav:
+            - Home: en/index.md
+            - Tutorial: en/tutorial.md
+            - PaymentSDK: en/payment/PaymentSDK.md
+            - Utils: en/utils/generators.md
 
   - search
 

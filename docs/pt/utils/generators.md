@@ -1,1 +1,1 @@
-::: translate.generators
+::: docs.translate.generators
