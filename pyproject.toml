@@ -45,7 +45,6 @@ mkdocs = "^1.6.1"
 mkdocs-material = "^9.5.49"
 mkdocstrings-python = "^1.13.0"
 mkdocs-macros-plugin = "^1.3.7"
-mkdocs-static-i18n = "^1.2.3"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "payment_emulation.core.settings"

@@ -18,13 +18,13 @@ theme:
           icon: material/weather-sunny
           name: Modo claro
 
-# nav:
-#   - Inicio: index.md
-#   - Tutorial: tutorial.md
-#   - Payment:
-#     - payment/PaymentSDK.md
-#   - Utils:
-#     - utils/generators.md
+nav:
+  - Inicio: index.md
+  - Tutorial: tutorial.md
+  - Payment:
+    - payment/PaymentSDK.md
+  - Utils:
+    - utils/generators.md
 
 markdown_extensions:
     - pymdownx.highlight
@@ -34,37 +34,6 @@ markdown_extensions:
 
 plugins:
   - macros
-
-
-  - i18n:
-      docs_structure: folder
-      languages:
-        - locale: pt
-          default: true
-          name: Português
-          build: true
-        #   nav_translations:
-        #     Home: Inicio
-          nav:
-            - Inicio: pt/index.md
-            - Tutorial: pt/tutorial.md
-            - PaymentSDK: pt/payment/PaymentSDK.md
-            - Utils: pt/utils/generators.md
-
-
-
-
-        - locale: en
-          name: English
-          build: true
-          link: '/latest/en/'
-          theme:
-            language: en
-          nav:
-            - Home: en/index.md
-            - Tutorial: en/tutorial.md
-            - PaymentSDK: en/payment/PaymentSDK.md
-            - Utils: en/utils/generators.md
 
   - search
 

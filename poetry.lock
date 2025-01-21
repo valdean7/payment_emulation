@@ -591,24 +591,6 @@ files = [
 ]
 
 [[package]]
-name = "mkdocs-static-i18n"
-version = "1.2.3"
-description = "MkDocs i18n plugin using static translation markdown files"
-optional = false
-python-versions = ">=3.8"
-groups = ["docs"]
-files = [
-    {file = "mkdocs_static_i18n-1.2.3-py3-none-any.whl", hash = "sha256:e6f2f3c53b657d7632015b32dea3c64d0b80a7a8d6cde0334ca8f66f9e33b52f"},
-    {file = "mkdocs_static_i18n-1.2.3.tar.gz", hash = "sha256:7ccf4da6dd29570ec49cd863ebff6fef9cb82dbb1cb85249bdf744e8d839c914"},
-]
-
-[package.dependencies]
-mkdocs = ">=1.5.2"
-
-[package.extras]
-material = ["mkdocs-material (>=9.2.5)"]
-
-[[package]]
 name = "mkdocstrings"
 version = "0.27.0"
 description = "Automatic documentation from sources, for MkDocs."
@@ -1188,4 +1170,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "dca0820277e3337b333990bf831f9151e64f1f083e216ecfbf4c90baa082f866"
+content-hash = "dc77927f85f0dc6117ca3568a87fcaa2b11bb25f3222ffc20e01ba600c1be8a2"

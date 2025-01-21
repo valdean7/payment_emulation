@@ -9,10 +9,10 @@ build:
     python: "3.13" 
   jobs:
     post_create_environment:
-      # - pip install poetry
-      # - poetry config virtualenvs.create false
-      - "pip install mkdocs mkdocs-macros-plugin mkdocs-material "
-      - "pip install mkdocs-static-i18n mkdocstrings mkdocstrings-python"
-      - "pip install pymdown-extensions"
-    # post_install:
-    #   - poetry install --no-interaction --no-ansi --only docs
+      - pip install poetry
+      - poetry config virtualenvs.create false
+      # - "pip install mkdocs mkdocs-macros-plugin mkdocs-material "
+      # - "pip install mkdocs-static-i18n mkdocstrings mkdocstrings-python"
+      # - "pip install pymdown-extensions"
+    post_install:
+      - poetry install --no-interaction --no-ansi --only docs
