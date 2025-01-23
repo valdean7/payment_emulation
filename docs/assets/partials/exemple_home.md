@@ -1,5 +1,5 @@
 ```{.py3 hl_lines="9-19"}
-from {{ vars.lib_name_sc }}.payment import PaymentSDK
+{{ vars.full_inport }}
 
 items = [
     {'id': 1, 'title': 'T-shirt', 'quantity': 3, 'unit_price': 49.99},

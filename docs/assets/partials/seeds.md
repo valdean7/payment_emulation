@@ -1,5 +1,5 @@
 ```{.py3}
-from {{ vars.lib_name_sc }}.payment import PaymentSDK
+{{ vars.full_inport }}
 
 response = PaymentSDK.get_seeds()
 print(response['PROBATUS'])

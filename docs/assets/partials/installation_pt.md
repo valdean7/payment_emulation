@@ -1,4 +1,4 @@
-### 1. Instalar a biblioteca `{{ vars.lib_name }}`:
+### 1. Instalar a biblioteca Payment Emulation:
 
 ```{.bash}
 pip install {{ vars.lib_name }}
@@ -9,7 +9,7 @@ pip install {{ vars.lib_name }}
 ```{.py3}
 INSTALLED_APPS = [
     ...
-    '{{ vars.lib_name_sc }}',
+    '{{ vars.installed_apps }}',
 ]
 ```
 

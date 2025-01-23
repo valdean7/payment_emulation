@@ -6,9 +6,9 @@
 
 ## Seeds pré-preparadas
 
-Assim que fizer `migrate`, será criado 3 seeds nos modelos da biblioteca
+Assim que fizer `migrate`, será criado 3 seeds nos modelos da biblioteca,
 `Account` e `Card`. Para pegar estes dados utilize o método `get_seeds` da
-classe `PaymentSDK`, cada dado representado por uma chave fará uma um tipo de
+classe `PaymentSDK`, cada dado representado por uma chave fará um tipo de
 transação, estas chaves são: 
 
 - `PROBATUS`: `{transaction: success, ...}`.
@@ -122,7 +122,7 @@ Veja um exemplo de como realizar uma transação.
 ## Como criar uma nova conta e cartão
 Durante a criação de uma conta e de um cartão, não será necessário passar todos os
 parâmetros, pois alguns receberão valores `default`. No modelo
-`Account` os parâmetros necessários será `cpf`, `account_holder_name` e `balance`.
+`Account` os parâmetros necessários serão `cpf`, `account_holder_name` e `balance`.
 Já os do modelo `Card` serão `account`, `card_holder_name`, `card_flag`, e o `pin`.
 
 - **Parâmetros do modelo `Account`**
@@ -131,7 +131,7 @@ Já os do modelo `Card` serão `account`, `card_holder_name`, `card_flag`, e o `
     - `account_number`: receberá um valor `default` ou então poderá receber uma 
     `str` (apenas dígitos) de até no máximo 20 dígitos.
     - `balance`: recebe um `int` ou uma `str` de um número inteiro ou um
-    número de ponto flutuante de até duas casas decimais.
+    número de ponto flutuantes de até duas casas decimais.
     - `status`: receberá uma choice `('AC', 'active')` como valor `default`,
     as outras choices que poderão ser passadas são `('IN', 'inactive')` e `('BL', 'blocked')`.
 
@@ -143,7 +143,7 @@ Já os do modelo `Card` serão `account`, `card_holder_name`, `card_flag`, e o `
     - `validity`: receberá um valor `default` ou então poderá receber um `date`.
     - `cvv`: receberá um valor `default` ou então poderá receber um `str`. 
     (apenas dígitos) de até no máximo 4 dígitos.
-    - `card_flag`: recebe uma choice, as choices que poderá ser passadas são
+    - `card_flag`: recebe uma choice, às choices que poderá ser passadas são
     `VISA` (Visa), `MC` (MasterCard), `ELO` (Elo) e `OTHER` (Other). 
     - `active`: recebe um valor `bool`, `True` como valor `default`.
     - `pin`: recebe uma `str` (apenas dígitos).

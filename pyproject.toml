@@ -9,9 +9,9 @@ authors = [
     {name = "Valdean",email = "valdeanjose6@gmail.com"}
 ]
 
-readme = "README.md"
+readme = "payment_emulation/README.md"
 
-license = { file = "payment_emulation/LICENSE" }
+license = { file = "LICENSE" }
 
 requires-python = ">=3.10"
 
@@ -44,10 +44,17 @@ documentation = "https://payment-emulation.readthedocs.io/latest/"
 
 [tool.poetry]
 exclude = [
+    "payment_emulation/__pycache__/*",
+    "payment_emulation/.pytest_cache/*",
     "payment_emulation/core/*",
     "payment_emulation/utils/tests/*",
     "payment_emulation/payment/tests/*",
     "payment_emulation/manage.py",
+    "payment_emulation/README.md",
+    "payment_emulation/.coverage",
+    "payment_emulation/coverage.xml",
+    "*/__pycache__/*",
+    "*/.pytest_cache/*",
 ]
 
 [build-system]

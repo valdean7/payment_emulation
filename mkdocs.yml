@@ -1,4 +1,4 @@
-site_name: Payment emulation
+site_name: Payment Emulation
 repo_url: https://github.com/valdean7/payment_emulation
 
 theme:
@@ -21,10 +21,9 @@ theme:
 nav:
   - Inicio: index.md
   - Tutorial: tutorial.md
-  - Payment:
-    - payment/PaymentSDK.md
-  - Utils:
-    - utils/generators.md
+  - Payment: payment/PaymentSDK.md
+  - Utils: utils/generators.md
+  - Contribuição: contributing.md
 
 markdown_extensions:
     - pymdownx.highlight
@@ -49,3 +48,5 @@ extra:
   vars:
     lib_name: "payment-emulation"
     lib_name_sc: "payment_emulation"
+    installed_apps: "payment_emulation.payment"
+    full_inport: "from payment_emulation.payment.paymentSDK import PaymentSDK"
