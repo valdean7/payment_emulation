@@ -10,7 +10,7 @@ projetos para implementar um método de pagamento.
 ## Suporte
 
 Se você tem alguma dúvida de como usar o **Payment Emulation** ou está tendo algum 
-problema, sinta-se a vontade para mandar uma [issue](https://github.com/valdean7/payment_emulation/issues) para pordemos discutir sobre isso!
+problema, sinta-se à vontade para mandar uma [issue](https://github.com/valdean7/payment_emulation/issues) para podermos discutir sobre isso!
 
 
 ## Links
