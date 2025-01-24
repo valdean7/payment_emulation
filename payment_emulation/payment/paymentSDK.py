@@ -24,13 +24,14 @@ class PaymentSDK():
         payer: dict | None = None,
         **extra
         ):
-        """_summary_
+        """Recebe um lista de produtos e outros dados adicionais para criar uma
+        emulação de pagamento.
 
         Args:
-            items: A list containing one or more dict of items.
-            redirect_urls: A dict containing redirect urls for each type of transaction.
-            address: A dict containing the payer's address.
-            payer: A dict containing the payer's data.
+            items: Uma lista contendo um ou mais dicionários de itens.
+            redirect_urls: Um dicionário contendo URLs de redirecionamento para cada tipo de transação.
+            address: Um dicionário contendo o endereço do pagador.
+            payer: Um dicionário contendo os dados do pagador.
         """
         self._validate_items(items)
         self.items = items
@@ -44,18 +45,18 @@ class PaymentSDK():
 
     def card_credentials(self, cpf: str, card_number: str, 
         validity: str, cvv: str, holder: str) -> Card | None:
-        """Will return a `Card` object if the credentials are 
-        valid, otherwise `None`.
+        """Retornará um objeto `Card` se as credenciais forem 
+        válidas, caso contrário, `None`.
 
         Args:
-            cpf: A valid CPF of the holder.
-            card_number: A sequence of digits (max: 16).
-            validity: A date with the month and year Ex: 12/24.
-            cvv: A sequence of 3 digits.
-            holder: the registered name of the holder.
+            cpf: Um CPF válido do titular.
+            card_number: Uma sequência de dígitos (máx.: 16).
+            validity: Uma data com o mês e o ano. Ex: 12/24.
+            cvv: Uma sequência de 3 dígitos.
+            holder: O nome registrado do titular.
 
         Returns:
-            A `Card` object or `None`.  
+            Um objeto `Card` ou `None`.
         """
         error_count = 0
 
@@ -83,11 +84,11 @@ class PaymentSDK():
 
 
     def get_items_total_value(self) -> Decimal:
-        """Takes all items, multiplies the quantity by the unit price, and
-        returns a value in `Decimal`.
+        """Recebe todos os itens, multiplica a `quantity` pelo `unit_price` e 
+        retorna um valor em `Decimal`.
 
         Returns:
-            A `Decimal` value.
+            Um valor `Decimal`.
         """
         value = 0
         for item in self.items:
@@ -103,14 +104,14 @@ class PaymentSDK():
 
 
     def _validate_items(self, items: list[dict]) -> None:
-        """Checks if the dictionaries contained in the list have the keys
-        `quantity` and `unit_price`.
+        """Verifica se os dicionários contidos na lista possuem as chaves 
+        `quantity` e `unit_price`.
 
         Args:
-            items: A list passed in the class initializer.
+            items: Uma lista passada no inicializador da classe.
 
         Raises:
-            KeyError: If the required keys `quantity` and `unit_price` are not passed.
+            KeyError: Se as chaves obrigatórias `quantity` e `unit_price` não forem informadas.
         """
         missing_keys = []
         for item in items:
@@ -129,8 +130,7 @@ class PaymentSDK():
 
 
     def _set_response(self) -> None:
-        """Defines the response with the parameters passed in the class
-        initializer.
+        """Define a resposta com os parâmetros passados no inicializador da classe.
         """
         self.RESPONSE['items'] = self.items
         self.RESPONSE['redirect_urls'] = self.redirect_urls
@@ -142,16 +142,16 @@ class PaymentSDK():
 
 
     def send_response(self, transaction: str) -> str:
-        """Sends a JSON response with data about the transaction.
+        """Envia uma resposta em JSON com dados sobre a transação.
 
         Args:
-            transaction: The result of the transaction (success, failure, pending).
+            transaction: O resultado da transação (success, failure, pending).
 
         Raises:
-            ValueError: If the transaction is not success, failure or pending.
+            ValueError: Se a transação não for success, failure ou pending.
 
         Returns:
-            A `JSON` string.
+            Uma string em `JSON`.
         """
         if transaction not in self.TRANSACTION:
             raise ValueError(f'The `{transaction}` is not valid value.')
@@ -165,17 +165,17 @@ class PaymentSDK():
 
     def payment(self, cpf: str, card_number: str, 
         validity: str, cvv: str, holder: str) -> str:
-        """Receives card credentials and performs a transaction.
+        """Recebe as credenciais do cartão e realiza uma transação.
 
         Args:
-            cpf: A valid CPF of the holder.
-            card_number (str): A sequence of digits (max: 16).
-            validity (str): A date with the month and year Ex: 12/24.
-            cvv (str): A sequence of 3 digits.
-            holder (str): The registered name of the holder.
+            cpf: Um CPF válido do titular.
+            card_number (str): Uma sequência de dígitos (máx.: 16).
+            validity (str): Uma data com o mês e o ano. Ex: 12/24.
+            cvv (str): Uma sequência de 3 dígitos.
+            holder (str): O nome registrado do titular.
 
         Returns:
-            A `JSON` string.
+            Uma string em `JSON`.
         """
         card = self.card_credentials(cpf, card_number, validity, cvv, holder)
         
@@ -203,14 +203,14 @@ class PaymentSDK():
 
     @staticmethod
     def set_seeds(instance: Card) -> dict:
-        """Receives an instance of the `Card` model and transforms the values
-        into a dict.
+        """Recebe uma instância do modelo `Card` e transforma os valores 
+        em um dicionário.
 
         Args:
-            instance: An instance of `Card` model.
+            instance: Uma instância do modelo `Card`.
 
         Returns:
-            A `dict` with the instance values.
+            Um `dict` com os valores da instância.
         """
         month = instance.validity.month
         year = str(instance.validity.year)[2:]
@@ -234,10 +234,10 @@ class PaymentSDK():
 
     @classmethod
     def get_seeds(cls) -> dict:
-        """Return the seeds if they are created. 
+        """Retorna as seeds caso elas estejam criadas. 
 
         Returns:
-            A `dict` with the values of the seeds.
+            Um `dict` com os valores das seeds.
         """
         SEEDS = {}
         if probatus := Card.objects.filter(card_holder_name='PROBATUS').first():

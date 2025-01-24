@@ -1,6 +1,6 @@
 # Payment Emulation
 
-[![codecov](https://codecov.io/gh/valdean7/payment_emulation/graph/badge.svg?token=IHKF7WUWDY)](https://codecov.io/gh/valdean7/payment_emulation)  ![CI](https://github.com/valdean7/payment_emulation/actions/workflows/pipiline.yaml/badge.svg)  ![docs](https://readthedocs.org/projects/payment-emulation/badge/?version=latest&style=default)
+[![codecov](https://codecov.io/gh/valdean7/payment_emulation/graph/badge.svg?token=IHKF7WUWDY)](https://codecov.io/gh/valdean7/payment_emulation) ![CI](https://github.com/valdean7/payment_emulation/actions/workflows/pipiline.yaml/badge.svg) ![docs](https://readthedocs.org/projects/payment-emulation/badge/?version=latest&style=default)
 
 ## Descrição
 

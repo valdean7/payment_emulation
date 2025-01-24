@@ -16,44 +16,43 @@ prefixes = {
 
 
 def generate_cvv(card_number: str, validity: date, secret: str) -> str:
-        
-        """Generates an encrypted CVV based on the card number, expiration date
-        and a secret key.
+    """Gera um CVV criptografado com base no número do cartão, data de validade 
+        e uma chave secreta.
 
         Args:
-            card_number: A sequence of digits.
-            validity: A `date` of datetime  Ex: 2024-12-1.
-            secret: A sequence of characters.
+            card_number: Uma sequência de dígitos.
+            validity: Uma data do tipo `date`. Ex: 2024-12-1.
+            secret: Uma sequência de caracteres.
 
         Returns:
-            A sequence of 3 digits.
-        """
+            Uma sequência de 3 dígitos.
+    """
 
-        data = f"{card_number}-{validity.month}/{str(validity.year)[2:]}"
+    data = f"{card_number}-{validity.month}/{str(validity.year)[2:]}"
 
-        hmac_generator = hmac.new(
-            secret.encode(), data.encode(), hashlib.sha256
-        )
+    hmac_generator = hmac.new(
+        secret.encode(), data.encode(), hashlib.sha256
+    )
 
-        hash_hex = hmac_generator.hexdigest()
+    hash_hex = hmac_generator.hexdigest()
 
-        cvv = ''.join(filter(str.isdigit, hash_hex))[:3]
+    cvv = ''.join(filter(str.isdigit, hash_hex))[:3]
 
-        return cvv
+    return cvv
 
 
 def verify_cvv(card_number: str, validity: str, secret: str,
                 cvv_to_verify: str) -> bool:
-    """Checks that the CVV provided matches the card number and expiration date.
+    """Verifica se o CVV fornecido corresponde ao número do cartão e à data de validade.
 
     Args:
-        card_number: a sequence of digits.
-        validity: a date with the month and year Ex: 12/24.
-        secret: a secret key chosen for encryption.
-        cvv_to_verify: CVV provided for verification.
+        card_number: uma sequência de dígitos.
+        validity: uma data com o mês e o ano. Ex: 12/24.
+        secret: uma chave secreta escolhida para criptografia.
+        cvv_to_verify: CVV fornecido para verificação.
 
     Returns:
-        A `bool`, True or False.
+        Um `bool`, True ou False.
     """
     expected_cvv = generate_cvv(card_number, validity, secret)
 
@@ -61,13 +60,13 @@ def verify_cvv(card_number: str, validity: str, secret: str,
 
 
 def luhn_checksum(card_number: str) -> int:
-    """Calculates the Luhn algorithm checksum to validate the card number.
+    """Calcula a soma de verificação do algoritmo de Luhn para validar o número do cartão.
 
     Args:
-        card_number: A sequence of digits.
+        card_number: Uma sequência de dígitos.
 
     Returns:
-        Valid if it is zero, otherwise invalid.
+        Válido se for zero, caso contrário, inválido.
     """
     def digits_of(n):
         return [int(d) for d in str(n)]
@@ -81,17 +80,17 @@ def luhn_checksum(card_number: str) -> int:
     return checksum % 10
 
 def generate_card_number(flag: str) -> str:
-    """Generates a valid card number based on the provided flag.
-    The preconfigured flags are (Visa, Mastercard, Elo and Other).
+    """Gera um número de cartão válido com base na flag fornecida.
+    As flags preconfiguradas são (Visa, Mastercard, Elo e Other).
 
     Args:
-        flag: A name of a flag that is in the `prefixes` variable.
+        flag: O nome de uma flag que está na variável `prefixes`.
 
     Raises:
-        ValueError: If the flag are not in the `prefixes`.
+        ValueError: Se a flag não estiver nos `prefixes`.
 
     Returns:
-        A sequence of digits.
+        Uma sequência de dígitos.
     """
 
     if flag.upper() not in prefixes:
@@ -112,10 +111,10 @@ def generate_card_number(flag: str) -> str:
 
 
 def generate_account_number() -> str:
-    """Generates a sequence of random numbers.
+    """Gera uma sequência de números aleatórios.
 
     Returns:
-        A sequence of digits.
+        Uma sequência de dígitos.
     """
     agency = f"{random.randint(1000, 9999)}{random.randint(0, 9)}"
     account = f"{random.randint(10000, 99999)}{random.randint(10, 99)}"

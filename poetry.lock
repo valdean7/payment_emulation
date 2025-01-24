@@ -528,6 +528,21 @@ markupsafe = ">=2.0.1"
 mkdocs = ">=1.1"
 
 [[package]]
+name = "mkdocs-exclude-search"
+version = "0.6.6"
+description = "A mkdocs plugin that lets you exclude selected files or sections from the search index."
+optional = false
+python-versions = ">=3.6"
+groups = ["docs"]
+files = [
+    {file = "mkdocs-exclude-search-0.6.6.tar.gz", hash = "sha256:3cdff1b9afdc1b227019cd1e124f401453235b92153d60c0e5e651a76be4f044"},
+    {file = "mkdocs_exclude_search-0.6.6-py3-none-any.whl", hash = "sha256:2b4b941d1689808db533fe4a6afba75ce76c9bab8b21d4e31efc05fd8c4e0a4f"},
+]
+
+[package.dependencies]
+mkdocs = ">=1.0.4"
+
+[[package]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 description = "MkDocs extension that lists all dependencies according to a mkdocs.yml file"
@@ -1250,4 +1265,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "27220f0ef7e23fb1bf1fa2d8da3c11ed68cb3fab9882f03b9db2cb22b3374d1e"
+content-hash = "f6be438c0a23dc5a38930249873733e8d4f1968ed7bf273944d0a479dde307f5"

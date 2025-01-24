@@ -1,1 +1,1 @@
-::: docs.translate.paymentSDK.PaymentSDK
+::: payment_emulation.payment.paymentSDK.PaymentSDK

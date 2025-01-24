@@ -1,1 +1,1 @@
-::: docs.translate.generators
+::: payment_emulation.utils.generators
