@@ -6,14 +6,14 @@ import json
 
 class PaymentSDK():
     RESPONSE = {
-        'transaction': None,
-        'items': [],
-        'redirect_urls': None,
-        'address': None,
-        'payer': None
+        "transaction": None,
+        "items": [],
+        "redirect_urls": None,
+        "address": None,
+        "payer": None
     }
 
-    TRANSACTION = ['success', 'failure', 'pending']
+    TRANSACTION = ["success", "failure", "pending"]
 
 
     def __init__(
@@ -92,7 +92,7 @@ class PaymentSDK():
         """
         value = 0
         for item in self.items:
-            value += int(item['quantity']) * float(item['unit_price'])
+            value += int(item["quantity"]) * float(item["unit_price"])
 
         decimal_value = Decimal(str(value))
         total_value = decimal_value.quantize(
@@ -132,10 +132,10 @@ class PaymentSDK():
     def _set_response(self) -> None:
         """Define a resposta com os parâmetros passados no inicializador da classe.
         """
-        self.RESPONSE['items'] = self.items
-        self.RESPONSE['redirect_urls'] = self.redirect_urls
-        self.RESPONSE['payer'] = self.payer
-        self.RESPONSE['address'] = self.address
+        self.RESPONSE["items"] = self.items
+        self.RESPONSE["redirect_urls"] = self.redirect_urls
+        self.RESPONSE["payer"] = self.payer
+        self.RESPONSE["address"] = self.address
         if self.extra:
             for ex in self.extra.items():
                 self.RESPONSE[ex[0]] = ex[1]
@@ -156,10 +156,10 @@ class PaymentSDK():
         if transaction not in self.TRANSACTION:
             raise ValueError(f'The `{transaction}` is not valid value.')
         
-        self.RESPONSE['transaction'] = transaction
-        if transaction == 'success':
-            self.RESPONSE['amount'] = float(self.get_items_total_value())
-            self.RESPONSE['created_at'] = localtime(now()).isoformat()
+        self.RESPONSE["transaction"] = transaction
+        if transaction == "success":
+            self.RESPONSE["amount"] = float(self.get_items_total_value())
+            self.RESPONSE["created_at"] = localtime(now()).isoformat()
         return json.dumps(self.RESPONSE)
 
 
@@ -215,19 +215,19 @@ class PaymentSDK():
         month = instance.validity.month
         year = str(instance.validity.year)[2:]
         return {
-                'account': {
-                    'cpf': instance.account.cpf,
-                    'account_holder_name': instance.account.account_holder_name,
-                    'account_number': instance.account.account_number,
-                    'balance': instance.account.balance,
-                    'status': instance.account.get_status_display(),
+                "account": {
+                    "cpf": instance.account.cpf,
+                    "account_holder_name": instance.account.account_holder_name,
+                    "account_number": instance.account.account_number,
+                    "balance": instance.account.balance,
+                    "status": instance.account.get_status_display(),
                 },
-                'card': {
-                    'card_holder_name': instance.card_holder_name,
-                    'card_number': instance.card_number,
-                    'validity': f'{month}/{year}',
-                    'cvv': instance.cvv,
-                    'card_flag': instance.card_flag,
+                "card": {
+                    "card_holder_name": instance.card_holder_name,
+                    "card_number": instance.card_number,
+                    "validity": f'{month}/{year}',
+                    "cvv": instance.cvv,
+                    "card_flag": instance.card_flag,
                 }
             }
 
@@ -241,12 +241,12 @@ class PaymentSDK():
         """
         SEEDS = {}
         if probatus := Card.objects.filter(card_holder_name='PROBATUS').first():
-            SEEDS['PROBATUS'] = cls.set_seeds(probatus)
+            SEEDS["PROBATUS"] = cls.set_seeds(probatus)
 
         if reprobi := Card.objects.filter(card_holder_name='REPROBI').first():
-            SEEDS['REPROBI'] = cls.set_seeds(reprobi)
+            SEEDS["REPROBI"] = cls.set_seeds(reprobi)
 
         if pendente := Card.objects.filter(card_holder_name='PENDENTE').first():
-            SEEDS['PENDENTE'] = cls.set_seeds(pendente)
+            SEEDS["PENDENTE"] = cls.set_seeds(pendente)
 
         return SEEDS
