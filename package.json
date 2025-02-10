@@ -1,0 +1,27 @@
+{
+  "name": "payment",
+  "version": "1.0.0",
+  "description": "![PyPI](https://img.shields.io/pypi/v/payment-emulation) ![License](https://img.shields.io/pypi/l/payment-emulation) [![codecov](https://codecov.io/gh/valdean7/payment_emulation/graph/badge.svg?token=IHKF7WUWDY)](https://codecov.io/gh/valdean7/payment_emulation) ![docs](https://readthedocs.org/projects/payment-emulation/badge/?version=latest&style=default)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "tailwind": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css",
+    "tailwind:watch": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valdean7/payment_emulation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valdean7/payment_emulation/issues"
+  },
+  "homepage": "https://github.com/valdean7/payment_emulation#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

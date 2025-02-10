@@ -43,21 +43,35 @@ class PaymentSDK():
         self._set_response()
 
 
-    def card_credentials(self, cpf: str, card_number: str, 
-        validity: str, cvv: str, holder: str) -> Card | None:
+    def card_credentials(
+        self, card_number: str, validity: str, cvv: str, holder: str , 
+        cpf: str | None = None, cnpj: str | None = None) -> Card | None:
         """Retornará um objeto `Card` se as credenciais forem 
         válidas, caso contrário, `None`.
 
         Args:
-            cpf: Um CPF válido do titular.
+            cpf: CPF válido do titular. Deve ser informado se `cnpj` for None.
+            cnpj: CNPJ válido do titular. Deve ser informado se `cpf` for None.
             card_number: Uma sequência de dígitos (máx.: 16).
             validity: Uma data com o mês e o ano. Ex: 12/24.
             cvv: Uma sequência de 3 dígitos.
             holder: O nome registrado do titular.
 
+        Note:
+            Os parâmetros `cpf` e `cnpj` devem ser passados sem formatação, ou seja, sem pontuação (ex.: '.', '-', '/').
+        
+        Raises:
+            ValueError: Se ambos os parâmetros `cpf` e `cnpj` forem None ou se ambos forem informados.
+
         Returns:
             Um objeto `Card` ou `None`.
         """
+
+        if (cpf is None) == (cnpj is None):
+            raise ValueError(
+                'Informe exatamente um dos parâmetros: cpf ou cnpj'
+            )
+
         error_count = 0
 
         card = Card.objects.filter(card_number=card_number.strip()).first()
@@ -65,15 +79,20 @@ class PaymentSDK():
         if not card.active: return
         if card.account.status == 'BL': return
 
-        if card.account.cpf != cpf.strip(): 
-            error_count +=1
+        if cpf:
+            if card.account.cpf != cpf.strip(): 
+                error_count += 1
+        
+        if cnpj:
+            if card.account.cnpj !=cnpj.strip():
+                error_count += 1
 
         if card.cvv != cvv.strip(): error_count += 1
 
-        if str(card.validity.year)[2:] != validity.strip().split('/')[1]: 
-            error_count += 1
+        if validity.strip()[0] == '0':
+            validity = validity.strip()[1:]
 
-        if str(card.validity.month) != validity.strip().split('/')[0]: 
+        if str(card.validity.year)[2:] != validity.strip().split('/')[1]: 
             error_count += 1
 
         if card.card_holder_name != holder.strip().upper(): error_count += 1
@@ -163,12 +182,13 @@ class PaymentSDK():
         return json.dumps(self.RESPONSE)
 
 
-    def payment(self, cpf: str, card_number: str, 
-        validity: str, cvv: str, holder: str) -> str:
+    def payment(self, card_number: str, validity: str, cvv: str, holder: str,
+                cpf: str | None = None, cnpj: str | None = None) -> str:
         """Recebe as credenciais do cartão e realiza uma transação.
 
         Args:
-            cpf: Um CPF válido do titular.
+            cpf: CPF válido do titular. Deve ser informado se `cnpj` for None.
+            cnpj: CNPJ válido do titular. Deve ser informado se `cpf` for None.
             card_number (str): Uma sequência de dígitos (máx.: 16).
             validity (str): Uma data com o mês e o ano. Ex: 12/24.
             cvv (str): Uma sequência de 3 dígitos.
@@ -177,8 +197,12 @@ class PaymentSDK():
         Returns:
             Uma string em `JSON`.
         """
-        card = self.card_credentials(cpf, card_number, validity, cvv, holder)
-        
+        card = self.card_credentials(
+            cpf=cpf if cpf else None,
+            cnpj=cnpj if cnpj else None,
+            card_number=card_number, validity=validity, cvv=cvv, holder=holder
+        )
+
         if card is None:
             return self.send_response(self.TRANSACTION[1])
         

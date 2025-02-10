@@ -90,7 +90,7 @@ def insert_seeds(apps: Apps, schema_editor: BaseDatabaseSchemaEditor):
             balance=seed[0]['balance']
         )
 
-        card = Card.objects.create(
+        Card.objects.create(
             account=account,
             card_holder_name=seed[1]['card_holder_name'],
             card_number=random_number,

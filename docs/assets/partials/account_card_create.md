@@ -1,6 +1,6 @@
 ```{.py3}
 from {{ vars.lib_name_sc }}.payment.models import Account, Card
-from {{ vars.lib_name_sc }}.pycpfcnpj.gen import cpf
+from pycpfcnpj.gen import cpf
 
 account = Account(
     cpf=cpf(), 

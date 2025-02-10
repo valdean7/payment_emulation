@@ -60,11 +60,11 @@ class TestPaymentSDK(TestCase):
         payment = PaymentSDK(self.item)
 
         credentials = payment.card_credentials(
-            card.account.cpf, 
-            card.card_number, 
-            data,
-            card.cvv,
-            card.card_holder_name
+            cpf=card.account.cpf, 
+            card_number=card.card_number, 
+            validity=data,
+            cvv=card.cvv,
+            holder=card.card_holder_name
         )
         self.assertIsNotNone(credentials)
 
@@ -128,8 +128,11 @@ class TestPaymentSDK(TestCase):
         validity = f'{card.validity.month}/{str(card.validity.year)[2:]}'
         payment = PaymentSDK(self.item)
         response = payment.payment(
-            card.account.cpf, card.card_number, 
-            validity, card.cvv, card.card_holder_name
+            cpf=card.account.cpf, 
+            card_number=card.card_number, 
+            validity=validity, 
+            cvv=card.cvv, 
+            holder=card.card_holder_name
         )
         response_object = json.loads(response)
 
@@ -154,8 +157,11 @@ class TestPaymentSDK(TestCase):
         validity = f'{card.validity.month}/{str(card.validity.year)[2:]}'
         payment = PaymentSDK(self.item)
         response = payment.payment(
-            card.account.cpf, card.card_number, 
-            validity, card.cvv, card.card_holder_name
+            cpf=card.account.cpf, 
+            card_number=card.card_number, 
+            validity=validity, 
+            cvv=card.cvv, 
+            holder=card.card_holder_name
         )
         response_object = json.loads(response)
 

@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.contrib.auth import hashers
-from pycpfcnpj.cpf import validate
+from pycpfcnpj import cpf, cnpj
 from django.conf import settings
 from datetime import date, timedelta
 from payment_emulation.utils import generators
@@ -12,7 +12,10 @@ class Account(models.Model):
     status_choices = [('AC', 'active'), ('IN', 'inactive'), ('BL', 'blocked')]
 
     cpf = models.CharField(
-        max_length=11, primary_key=True, unique=True, verbose_name='CPF'
+        max_length=11, blank=True,null=True, unique=True, verbose_name='CPF'
+    )
+    cnpj = models.CharField(
+        max_length=14, blank=True,null=True, unique=True, verbose_name='CNPJ'
     )
     account_holder_name = models.CharField(max_length=100)
     account_number = models.CharField(
@@ -40,6 +43,7 @@ class Account(models.Model):
     
 
     def save(self, *args, **kwargs):
+        self.full_clean()
         self.account_holder_name = self.account_holder_name.upper()
 
         if not self.account_number:
@@ -50,8 +54,18 @@ class Account(models.Model):
 
     def clean(self):
         super().clean()
-        if not validate(self.cpf):
-            raise ValidationError({'cpf': 'The `cpf` provided is not valid.'})
+        if (self.cpf and self.cnpj) or (not self.cpf and not self.cnpj):
+            raise ValidationError('Provide only CPF or CNPJ.')
+        if self.cpf:
+            if not cpf.validate(self.cpf):
+                raise ValidationError(
+                    {'cpf': 'The `cpf` provided is not valid.'}
+                )
+        if self.cnpj:
+            if not cnpj.validate(self.cnpj):
+                raise ValidationError(
+                    {'cnpj': 'The `cnpj` provided is not valid.'}
+                )
         
         if self.account_number:
             if not self.account_number.isdigit():
