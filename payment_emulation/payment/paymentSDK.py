@@ -219,7 +219,7 @@ class PaymentSDK():
             new_balane = card_account_balance - items_total_value
             card.account.balance = new_balane
             card.account.save()
-        except:
+        except: # pragma: no cover
             return self.send_response(self.TRANSACTION[1])
         
         return self.send_response(self.TRANSACTION[0])

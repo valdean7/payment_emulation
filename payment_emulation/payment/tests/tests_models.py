@@ -1,8 +1,9 @@
 from payment_emulation.payment.models import Account, Card
 from django.test import TestCase
-from pycpfcnpj.gen import cpf
+from pycpfcnpj.gen import cpf, cnpj
 from unittest.mock import patch, Mock as M
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class TestModels(TestCase):
@@ -41,7 +42,6 @@ class TestModels(TestCase):
                 account_holder_name='TEST',
                 balance=10
             )
-            account.full_clean()
 
 
     def test_must_validate_the_account_number(self):
@@ -52,7 +52,6 @@ class TestModels(TestCase):
                 account_number='162d65636fbv6564',
                 balance=10
             )
-            account.full_clean()
 
 
     def test_must_validate_the_account_holder_name(self):
@@ -62,7 +61,14 @@ class TestModels(TestCase):
                     account_holder_name='TEST1',
                     balance=10
                 )
-                account.full_clean()
+
+
+    def test_should_create_account_with_cnpj(self):
+        account = Account.objects.create(
+            cnpj=cnpj(),
+            account_holder_name='TEST'
+        )
+        self.assertEqual(account.__str__(),'TEST')
 
 
     def test_should_create_a_card(self):
@@ -120,60 +126,82 @@ class TestModels(TestCase):
     def test_should_validate_the_card_holder_name(self):
         with self.assertRaises(ValidationError):
             probatus = self.get_account('PROBATUS')
-            card = Card.objects.create(
+            Card.objects.create(
                 account=probatus,
                 card_holder_name='test1',
                 card_flag='VISA',
                 pin='1234'
             )
-            card.full_clean()
 
 
     def test_should_validate_the_card_pin(self):
         with self.assertRaises(ValidationError):
             probatus = self.get_account('PROBATUS')
-            card = Card(
+            Card.objects.create(
                 account=probatus,
                 card_holder_name='test',
                 card_flag='VISA',
                 pin='1234a'
             )
-            card.full_clean()
 
 
     def test_should_validate_the_pin_length(self):
         with self.assertRaises(ValidationError):
             probatus = self.get_account('PROBATUS')
-            card = Card(
+            Card.objects.create(
                 account=probatus,
                 card_holder_name='test',
                 card_flag='VISA',
                 pin='123'
             )
-            card.full_clean()
 
 
     def test_should_validate_the_card_number(self):
         with self.assertRaises(ValidationError):
             probatus = self.get_account('PROBATUS')
-            card = Card.objects.create(
+            Card.objects.create(
                 account=probatus,
                 card_holder_name='test',
                 card_number='6752gfhgf364b6',
                 card_flag='VISA',
                 pin='1234'
             )
-            card.full_clean()
 
 
     def test_should_validate_the_card_cvv(self):
         with self.assertRaises(ValidationError):
             probatus = self.get_account('PROBATUS')
-            card = Card.objects.create(
+            Card.objects.create(
                 account=probatus,
                 card_holder_name='test',
                 card_flag='VISA',
                 pin='1234',
                 cvv='12a'
             )
-            card.full_clean()
+
+
+    def test_should_get_readonly_fields(self):
+        User.objects.create_superuser(username='test', password='1q2w3e4r')
+        self.client.login(username='test', password='1q2w3e4r')
+        response = self.client.get('/admin/payment/card/1/change/')
+        self.assertIn(
+            'Administração do Django',
+            response.content.decode() 
+        )
+
+
+    def test_should_raise_validation_error_if_provide_cpf_and_cnpj(self):
+        with self.assertRaises(ValidationError):
+            Account.objects.create(
+                cpf=cpf(), 
+                cnpj=cnpj(),
+                account_holder_name='TEST'
+            )
+
+
+    def test_should_raise_validation_error_if_cnpj_is_invalid(self):
+        with self.assertRaises(ValidationError):
+            Account.objects.create(
+                cnpj='897454546754',
+                account_holder_name='TEST'
+            )

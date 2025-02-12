@@ -65,7 +65,7 @@ def insert_seeds(apps: Apps, schema_editor: BaseDatabaseSchemaEditor):
         account_number =  generators.generate_account_number()
 
         if Account.objects.filter(account_number=account_number).exists():
-            return generate_account_number()
+            return generate_account_number() # pragma: no cover
         return account_number
 
 
@@ -73,7 +73,7 @@ def insert_seeds(apps: Apps, schema_editor: BaseDatabaseSchemaEditor):
         card_number = generators.generate_card_number(flag)
 
         if Card.objects.filter(card_number=card_number).exists():
-            return generate_card_number(flag)
+            return generate_card_number(flag) # pragma: no cover
         return card_number
 
     secret_key: str = settings.SECRET_KEY

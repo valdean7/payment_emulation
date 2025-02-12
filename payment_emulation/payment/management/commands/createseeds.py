@@ -49,7 +49,7 @@ SEEDS = [
 def generate_cpf() -> str:
     generated_cpf = cpf()
     if Account.objects.filter(cpf=generated_cpf).exists():
-        return generate_cpf()
+        return generate_cpf() # pragma: no cover
     else:
         return generated_cpf
 
@@ -58,7 +58,7 @@ def generate_account_number() -> str:
     account_number =  generators.generate_account_number()
 
     if Account.objects.filter(account_number=account_number).exists():
-        return generate_account_number()
+        return generate_account_number() # pragma: no cover
     return account_number
 
 
@@ -66,7 +66,7 @@ def generate_card_number(flag: str) -> str:
         card_number = generators.generate_card_number(flag)
 
         if Card.objects.filter(card_number=card_number).exists():
-            return generate_card_number(flag)
+            return generate_card_number(flag) # pragma: no cover
         return card_number
 
 
@@ -86,13 +86,12 @@ class Command(BaseCommand):
             a_h_n = seed[0]['account_holder_name']
             if not Account.objects.filter(account_holder_name=a_h_n).exists():
                 try:
-                    account = Account(
+                    account = Account.objects.create(
                         cpf=generate_cpf(),
                         account_holder_name=a_h_n,
                         account_number=generate_account_number(),
                         balance=seed[0]['balance']
                     )
-                    account.save()
 
                     secret_key: str = settings.SECRET_KEY
                     date = create_validity()
@@ -102,16 +101,15 @@ class Command(BaseCommand):
                         random_number, date, secret_key
                     )
 
-                    card = Card(
+                    Card.objects.create(
                         account=account,
                         card_holder_name=seed[1]['card_holder_name'],
                         card_number=random_number,
                         card_flag=seed[1]['card_flag'],
-                        pin=hashers.make_password(seed[1]['pin']),
+                        pin=seed[1]['pin'],
                         validity=date,
                         cvv=cvv
                     )
-                    card.save()
                     created_seeds.append(a_h_n)
                 except Exception as error:
                     self.stdout.write(

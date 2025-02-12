@@ -129,6 +129,7 @@ class Card(models.Model):
 
 
     def save(self, *args, **kwargs):
+        self.full_clean()
         self.card_holder_name = self.card_holder_name.upper()
 
         if not self.card_number:

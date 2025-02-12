@@ -1,9 +1,10 @@
 from django.test import TestCase
 from payment_emulation.payment.paymentSDK import PaymentSDK
 from unittest.mock import patch, Mock as M
-from payment_emulation.payment.models import Card
+from payment_emulation.payment.models import Card, Account
 from decimal import Decimal
 import json
+from pycpfcnpj.gen import cnpj
 
 
 class TestPaymentSDK(TestCase):
@@ -76,13 +77,62 @@ class TestPaymentSDK(TestCase):
         payment = PaymentSDK(self.item)
 
         credentials = payment.card_credentials(
-            '00000000000', 
-            card.card_number, 
-            data,
-            '000',
-            'probatus'
+            cpf='00000000000', 
+            card_number=card.card_number, 
+            validity=data,
+            cvv='000',
+            holder='probatus'
         )
         self.assertIsNone(credentials)
+
+
+    def test_should_raise_value_error_if_cpf_and_cnpj_are_none(self):
+        card = self.get_card('PROBATUS')
+
+        payment = PaymentSDK(self.item)
+        with self.assertRaises(ValueError):
+            payment.card_credentials(
+            card_number=card.card_number,
+            validity=f'{card.validity.month}/{str(card.validity.year)[2:]}',
+            cvv=card.cvv,
+            holder=card.card_holder_name
+            )
+
+
+    def test_should_be_ok_if_validity_month_start_with_zero(self):
+        card = self.get_card('PROBATUS')
+
+        payment = PaymentSDK(self.item)
+        response = payment.card_credentials(
+            card_number=card.card_number,
+            validity=f'0{card.validity.month}/{str(card.validity.year)[2:]}',
+            cvv=card.cvv,
+            holder=card.card_holder_name,
+            cpf=card.account.cpf
+        )
+        self.assertIsNotNone(response)
+
+    
+    def test_should_be_none_if_card_credentials_cnpj_is_not_correct(self):
+        account = Account.objects.create(
+            cnpj=cnpj(),
+            account_holder_name='TEST',
+        )
+        card = Card.objects.create(
+            account=account,
+            card_holder_name='TEST',
+            card_flag='MC',
+            pin='1234'
+        )
+        payment = PaymentSDK(self.item)
+        response = payment.card_credentials(
+            card_number=card.card_number,
+            validity=f'{card.validity.month}/{str(card.validity.year)[2:]}',
+            cnpj='0000000000000',
+            cvv=card.cvv,
+            holder=card.card_holder_name
+        )
+        self.assertIsNone(response)
 
 
     def test_should_return_a_sum_of_all_items(self):
@@ -144,8 +194,8 @@ class TestPaymentSDK(TestCase):
         validity = f'{card.validity.month}/{str(card.validity.year)[2:]}'
         payment = PaymentSDK(self.item)
         response = payment.payment(
-            card.account.cpf, card.card_number, 
-            validity, card.cvv, 'TEST'
+            cpf=card.account.cpf, card_number=card.card_number, 
+            validity=validity, cvv=card.cvv, holder='TEST'
         )
         response_object = json.loads(response)
 
@@ -173,8 +223,8 @@ class TestPaymentSDK(TestCase):
         validity = f'{card.validity.month}/{str(card.validity.year)[2:]}'
         payment = PaymentSDK(self.item)
         response = payment.payment(
-            card.account.cpf, card.card_number, 
-            validity, card.cvv, card.card_holder_name
+            cpf=card.account.cpf, card_number=card.card_number, 
+            validity=validity, cvv=card.cvv, holder=card.card_holder_name
         )
         response_object = json.loads(response)
 
