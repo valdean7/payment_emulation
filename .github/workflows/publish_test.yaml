@@ -1,0 +1,32 @@
+name: Publish Test PyPi
+on: 
+  workflow_dispatch: 
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+            python-version: '3.13'
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Install project dependencies for publish
+        run: poetry install --without docs,test
+
+      - name: PyPI Test repository
+        run: poetry config repositories.testpypi https://test.pypi.org/simple
+    
+      - name: PyPI Test Token
+        run: poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
+    
+      - name: Build
+        run: poetry build
+
+      - name: Publish on TestPyPI
+        run: poetry publish --repository testpypi

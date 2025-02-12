@@ -1,7 +1,7 @@
 [project]
 name = "payment-emulation"
 
-version = "0.1.0"
+version = "0.2.0"
 
 description = "Uma biblioteca desenvolvida para ser utilizada em projetos Django para emular pagamentos com cartão bancário."
 
