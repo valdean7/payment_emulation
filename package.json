@@ -8,7 +8,8 @@
   },
   "scripts": {
     "tailwind": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css",
-    "tailwind:watch": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css --watch"
+    "tailwind:watch": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css --watch",
+    "tailwind:minify": "npx tailwindcss -i payment_emulation/payment/static/payment/css/input.css -o payment_emulation/payment/static/payment/css/output.css --minify"
   },
   "repository": {
     "type": "git",
