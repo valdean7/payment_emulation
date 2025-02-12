@@ -79,8 +79,6 @@ mkdocs-exclude-search = "^0.6.6"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "payment_emulation.core.settings"
-# pythonpath = "."
-# norecursedirs = ["venv"]
 python_files = ["test_*.py", "tests_*.py", "*_test.py", "*_tests.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*", "tests_*"]
