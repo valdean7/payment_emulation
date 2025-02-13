@@ -20,7 +20,7 @@ jobs:
         run: poetry install --without docs,test
 
       - name: PyPI Test repository
-        run: poetry config repositories.testpypi https://test.pypi.org/simple
+        run: poetry config repositories.testpypi https://test.pypi.org/
     
       - name: PyPI Test Token
         run: poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
