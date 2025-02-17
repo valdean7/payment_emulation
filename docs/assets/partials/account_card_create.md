@@ -1,15 +1,17 @@
-```{.py3}
+```{.python linenums="1" .copy}
 from {{ vars.lib_name_sc }}.payment.models import Account, Card
-from pycpfcnpj.gen import cpf
+from pycpfcnpj.gen import cpf # generate a valide CPF
 
+
+# only required params
 account = Account(
     cpf=cpf(), 
     account_holder_name='Jhon Doe', 
-    balance=10000
 )
 
 account.save()
 
+# only required params
 card = Card(
     account=account, 
     card_holder_name='Jhon Doe', 

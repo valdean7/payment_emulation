@@ -1,12 +1,12 @@
 ### 1. Instalar a biblioteca Payment Emulation:
 
-```{.bash}
+```{.bash .copy}
 pip install {{ vars.lib_name }}
 ```
 
 ### 2. Adicione em `INSTALLED_APPS`: 
 
-```{.py3}
+```{.python .copy}
 INSTALLED_APPS = [
     ...
     '{{ vars.installed_apps }}',
@@ -15,6 +15,6 @@ INSTALLED_APPS = [
 
 ### 3. Realize as migrações:
 
-```{.bash}
+```{.bash .copy}
 python manage.py migrate
 ```

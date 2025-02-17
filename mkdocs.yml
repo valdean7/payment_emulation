@@ -21,16 +21,22 @@ theme:
 
 nav:
   - Inicio: index.md
-  - Tutorial: tutorial.md
+  - CLI: CLI.md
+  - Transações: transactions.md
+  - Conta e Cartão: account_and_card.md
   - PaymentSDK: payment/PaymentSDK.md
   - Generators: utils/generators.md
+  - Modal: payment_modal.md
+  - Middleware: middleware.md
   - Contribuição: contributing.md
 
 markdown_extensions:
     - pymdownx.highlight
-    - pymdownx.superfences
     - pymdownx.inlinehilite
+    - pymdownx.superfences
     - admonition
+    - pymdownx.details
+    - attr_list
 
 plugins:
   - macros
