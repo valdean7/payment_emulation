@@ -8,10 +8,8 @@ build:
   tools:
     python: "3.13" 
   jobs:
-    post_create_environment:
-      - pip install poetry
-      - poetry config virtualenvs.create false
-
     post_install:
-      - poetry install --with docs
+      - "pip install mkdocs mkdocs-macros-plugin mkdocs-material"
+      - "pip install mkdocstrings mkdocstrings-python pymdown-extensions"
+      - "pip install mkdocs-exclude-search"
 
